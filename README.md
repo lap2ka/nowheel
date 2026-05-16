@@ -4,8 +4,18 @@
 </div>
 <br>
 
-### About
-This mod makes EntityCulling occlusion cull Flywheel entities and block entities, boosting FPS especially in larger Create factories
+Nowheel makes Create machines not render when behind walls, **boosting performance**, especially in larger factories
+
+### Without Nowheel
+![Without Nowheel (103 FPS)](https://cdn.modrinth.com/data/cached_images/ff7c91686dd60657f7c495e8f56262a05b56036f_0.webp)
+
+### With Nowheel
+![With Nowheel (320 FPS)](https://cdn.modrinth.com/data/cached_images/666100c022f6583aa59e99a82eeae510aa142a18_0.webp)
+
+_The above images were taken on the "alpha industries" world with most of the factory occluded by a wall_
+
+## This mod is built on and requires [Entity Culling](https://modrinth.com/mod/entityculling)
+## [Create](https://modrinth.com/mod/create) is also required ~~(obviously)~~
 
 ### License
 
@@ -13,6 +23,4 @@ All code in this repository is licensed under the **MIT** license. You are free 
 
 ### Credits
 
-This mod is built on and requires [EntityCulling](https://github.com/tr7zw/EntityCulling)
-
-Belt and Chain conveyor AABBs are taken from [Create: Smart Bounds](https://github.com/LIUKRAST/SmartBounds).
+Belt and Chain conveyor AABBs are taken from [Create Smart Bounds](https://modrinth.com/mod/create-smart-bounds).
