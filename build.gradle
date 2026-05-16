@@ -18,6 +18,10 @@ repositories {
         url = 'https://api.modrinth.com/maven'
         content { includeGroup 'maven.modrinth' }
     }
+    maven {
+        url = 'https://maven.ryanhcode.dev/releases'
+        content { includeGroup 'dev.ryanhcode.sable-companion' }
+    }
     mavenCentral()
 }
 
@@ -44,6 +48,8 @@ dependencies {
     compileOnly "dev.engine-room.flywheel:flywheel-neoforge-1.21.1:${flywheel_version}"
 
     compileOnly "maven.modrinth:entityculling:${entityculling_version}"
+
+    compileOnly "dev.ryanhcode.sable-companion:sable-companion-common-${minecraft_version}:${sable_companion_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
