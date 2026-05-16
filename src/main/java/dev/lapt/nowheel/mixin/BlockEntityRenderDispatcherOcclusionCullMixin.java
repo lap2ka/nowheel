@@ -27,6 +27,7 @@ public abstract class BlockEntityRenderDispatcherOcclusionCullMixin {
         if (EntityCullingModBase.instance.config.skipBlockEntityCulling) return;
         if (!(be instanceof Cullable c)) return;
         if (c.isForcedVisible() || !c.isCulled()) return;
+        EntityCullingModBase.instance.skippedBlockEntities++;
         ci.cancel();
     }
 }
