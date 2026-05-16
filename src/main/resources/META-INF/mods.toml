@@ -1,15 +1,17 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
+issueTrackerURL = "https://github.com/lap2ka/nowheel/issues"
 license = "${mod_license}"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${mod_version}"
 displayName = "${mod_name}"
+displayURL = "https://modrinth.com/mod/create-nowheel"
 authors="Lap2ka"
 logoFile="icon.png"
 description = '''
-Boost Create mod FPS using occlusion culling
+Boost performance in Create using Occlusion Culling
 '''
 
 [[mixins]]
