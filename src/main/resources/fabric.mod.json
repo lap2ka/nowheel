@@ -3,13 +3,18 @@
   "id": "${mod_id}",
   "version": "${mod_version}",
   "name": "${mod_name}",
-  "description": "Boost Create mod FPS using occlusion culling",
+  "description": "Boost performance in Create using Occlusion Culling\n",
   "authors": ["Lap2ka"],
   "license": "${mod_license}",
   "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
     "client": ["dev.lapt.nowheel.NowheelMod"]
+  },
+  "contact": {
+    "homepage": "https://modrinth.com/mod/create-nowheel",
+    "sources": "https://github.com/lap2ka/nowheel",
+    "issues": "https://github.com/lap2ka/nowheel/issues"
   },
   "mixins": [
     {
