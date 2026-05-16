@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EntityStorageMixin {
 
     @Inject(
-        method = "willAccept(Lnet/minecraft/world/entity/Entity;)Z", at = @At("HEAD"), cancellable = true
+        method = "willAccept", at = @At("HEAD"), cancellable = true
     )
     private void nowheel$rejectCulledAdd(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if ((Object) entity instanceof Cullable c && !c.isForcedVisible() && c.isCulled()) {
@@ -24,7 +24,7 @@ public abstract class EntityStorageMixin {
     }
 
     @Inject(
-        method = "createRaw(Ldev/engine_room/flywheel/api/visualization/VisualizationContext;Lnet/minecraft/world/entity/Entity;F)Ldev/engine_room/flywheel/api/visual/EntityVisual;",
+        method = "createRaw",
         at = @At("HEAD"),
         cancellable = true
     )

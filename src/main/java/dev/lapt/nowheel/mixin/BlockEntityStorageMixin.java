@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BlockEntityStorageMixin {
 
     @Inject(
-        method = "willAccept(Lnet/minecraft/world/level/block/entity/BlockEntity;)Z", at = @At("HEAD"), cancellable = true
+        method = "willAccept", at = @At("HEAD"), cancellable = true
     )
     private void nowheel$rejectCulledAdd(BlockEntity blockEntity, CallbackInfoReturnable<Boolean> cir) {
         if ((Object) blockEntity instanceof Cullable c && !c.isForcedVisible() && c.isCulled()) {
@@ -24,7 +24,7 @@ public abstract class BlockEntityStorageMixin {
     }
 
     @Inject(
-        method = "createRaw(Ldev/engine_room/flywheel/api/visualization/VisualizationContext;Lnet/minecraft/world/level/block/entity/BlockEntity;F)Ldev/engine_room/flywheel/api/visual/BlockEntityVisual;",
+        method = "createRaw",
         at = @At("HEAD"),
         cancellable = true
     )

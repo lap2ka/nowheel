@@ -26,7 +26,8 @@ public abstract class CullTaskMixin {
     @Redirect(
         method = "cullBlockEntities", at = @At(
         value = "INVOKE",
-        target = "Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;getRenderer(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;"
+        target = "Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;getRenderer(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;",
+        remap = true
     )
     )
     private BlockEntityRenderer nowheel$includeFlywheelOnlyVisuals(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity) {
@@ -39,7 +40,7 @@ public abstract class CullTaskMixin {
     // Flywheel renders its stuff way past the vanilla 64
     @Redirect(
         method = "cullBlockEntities", at = @At(
-        value = "INVOKE", target = "Ldev/tr7zw/entityculling/CullTask;closerThan(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Position;D)Z"
+        value = "INVOKE", target = "Ldev/tr7zw/entityculling/CullTask;closerThan"
     )
     )
     private boolean nowheel$extendCloserThan(BlockPos blockPos, Position position, double original) {
