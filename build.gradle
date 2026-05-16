@@ -81,7 +81,7 @@ publishMods {
         projectId = modrinth_id
         accessToken = providers.environmentVariable('MODRINTH_TOKEN')
         minecraftVersions.add(minecraft_version)
-        requires { slug = 'create' }
+        requires { slug = 'create-fabric' }
         requires { slug = 'entityculling' }
     }
 
@@ -89,7 +89,7 @@ publishMods {
         projectId = curseforge_id
         accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
         minecraftVersions.add(minecraft_version)
-        requires { slug = 'create' }
+        requires { slug = 'create-fabric' }
         requires { slug = 'entityculling' }
     }
 }
