@@ -6,15 +6,18 @@ import dev.lapt.nowheel.cull.CullTransitions;
 import dev.lapt.nowheel.flywheel.FlywheelVisualToggleListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.fml.common.Mod;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
-@Mod(value = NowheelMod.MODID, dist = net.neoforged.api.distmarker.Dist.CLIENT)
+@Mod(NowheelMod.MODID)
 public class NowheelMod {
     public static final String MODID = "nowheel";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public NowheelMod() {
+        if (FMLEnvironment.dist != Dist.CLIENT) return;
         CullTransitions.BE.register(new FlywheelVisualToggleListener<>(
             BlockEntity::getLevel, VisualizationManager::blockEntities));
         CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(

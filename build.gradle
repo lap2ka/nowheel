@@ -1,6 +1,8 @@
 plugins {
     id 'java-library'
-    id 'net.neoforged.gradle.userdev' version '7.1.26'
+    id 'eclipse'
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = "${mod_version}+${minecraft_version}${loader}"
@@ -8,11 +10,36 @@ group = mod_group_id
 
 base { archivesName = mod_id }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+        client {}
+    }
+}
+
+mixin {
+    add sourceSets.main, 'nowheel.refmap.json'
+    config 'nowheel.mixins.json'
+}
 
 repositories {
+    maven { url = 'https://maven.createmod.net/' }
     maven {
-        url = 'https://maven.createmod.net/'
+        url = 'https://maven.ithundxr.dev/mirror'
+        content { includeGroup 'com.tterrag.registrate' }
     }
     maven {
         url = 'https://api.modrinth.com/maven'
@@ -21,44 +48,43 @@ repositories {
     mavenCentral()
 }
 
-runs {
-    configureEach {
-        systemProperty 'forge.logging.markers', 'REGISTRIES'
-        systemProperty 'forge.logging.console.level', 'debug'
-        workingDirectory project.layout.projectDirectory.dir('run').dir(name)
-        modSource project.sourceSets.main
-    }
-    client {}
-}
-
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
-}
-
 dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    compileOnly "com.simibubi.create:create-1.21.1:${create_version}:slim"
-    compileOnly "net.createmod.ponder:Ponder-NeoForge-1.21.1:${ponder_version}"
-    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1:${flywheel_version}"
-    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-1.21.1:${flywheel_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    compileOnly "maven.modrinth:entityculling:${entityculling_version}"
+    compileOnly(fg.deobf("com.simibubi.create:create-1.20.1:${create_version}:slim")) {
+        transitive = false
+    }
+    compileOnly "net.createmod.ponder:Ponder-Forge-1.20.1:${ponder_version}"
+    compileOnly "dev.engine-room.flywheel:flywheel-forge-api-1.20.1:${flywheel_version}"
+    compileOnly fg.deobf("dev.engine-room.flywheel:flywheel-forge-1.20.1:${flywheel_version}")
+
+    compileOnly fg.deobf("maven.modrinth:entityculling:${entityculling_version}")
 }
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [minecraft_version      : minecraft_version,
                              minecraft_version_range: minecraft_version_range,
-                             neo_version            : neo_version,
+                             forge_version          : forge_version,
+                             forge_version_range    : forge_version_range,
                              loader_version_range   : loader_version_range,
                              mod_id                 : mod_id,
                              mod_name               : mod_name,
                              mod_license            : mod_license,
                              mod_version            : mod_version,]
     inputs.properties replaceProperties
-    filesMatching(['META-INF/neoforge.mods.toml']) { expand replaceProperties }
+    filesMatching(['META-INF/mods.toml']) { expand replaceProperties }
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes([
+            'MixinConfigs': 'nowheel.mixins.json'
+        ])
+    }
 }
