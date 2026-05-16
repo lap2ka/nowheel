@@ -44,3 +44,10 @@ type = "required"
 versionRange = "[1.9,)"
 ordering = "AFTER"
 side = "CLIENT"
+
+[[dependencies.${ mod_id }]]
+modId = "cloth_config"
+type = "optional"
+versionRange = "[15,)"
+ordering = "AFTER"
+side = "CLIENT"

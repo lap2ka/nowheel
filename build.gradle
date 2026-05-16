@@ -50,6 +50,8 @@ dependencies {
 
     compileOnly "maven.modrinth:entityculling:${entityculling_version}"
 
+    compileOnly "maven.modrinth:cloth-config:${cloth_config_version}"
+
     compileOnly "dev.ryanhcode.sable-companion:sable-companion-common-${minecraft_version}:${sable_companion_version}"
 }
 
@@ -76,7 +78,7 @@ publishMods {
     modLoaders.add("${loader}")
     changelog = providers.environmentVariable('CHANGELOG').orElse('No changelog provided.')
 
-    displayName = "Create: Nowheel ${mod_version} for ${loader} ${minecraft_version}"
+    displayName = "Nowheel ${mod_version} for ${loader} ${minecraft_version}"
     version = project.version
 
     modrinth {
