@@ -5,6 +5,7 @@ import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
 import com.simibubi.create.content.kinetics.chainConveyor.ChainConveyorBlockEntity;
+import com.simibubi.create.content.kinetics.waterwheel.WaterWheelBlockEntity;
 import com.simibubi.create.content.trains.track.TrackBlockEntity;
 import dev.lapt.nowheel.bbox.CreateBoxes;
 import dev.tr7zw.entityculling.EntityCullingMod;
@@ -38,6 +39,8 @@ public class EntityCullingModMixin {
             cir.setReturnValue(CreateBoxes.ropePulley(rope, pos));
         } else if (entity instanceof HosePulleyBlockEntity hose) {
             cir.setReturnValue(CreateBoxes.hosePulley(hose, pos));
+        } else if (entity instanceof WaterWheelBlockEntity wheel) {
+            cir.setReturnValue(CreateBoxes.waterWheel(wheel, pos));
         }
     }
 }

@@ -7,6 +7,8 @@ import com.simibubi.create.content.kinetics.belt.BeltBlock;
 import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
 import com.simibubi.create.content.kinetics.belt.BeltSlope;
 import com.simibubi.create.content.kinetics.chainConveyor.ChainConveyorBlockEntity;
+import com.simibubi.create.content.kinetics.waterwheel.LargeWaterWheelBlockEntity;
+import com.simibubi.create.content.kinetics.waterwheel.WaterWheelBlockEntity;
 import com.simibubi.create.content.trains.track.BezierConnection;
 import com.simibubi.create.content.trains.track.TrackBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -88,5 +90,10 @@ public final class CreateBoxes {
         int width = Math.max(1, tank.getWidth()) - 1;
         int height = Math.max(1, tank.getHeight()) - 1;
         return new AABB(pos).expandTowards(width, height, width);
+    }
+
+    public static AABB waterWheel(WaterWheelBlockEntity wheel, BlockPos pos) {
+        int size = wheel instanceof LargeWaterWheelBlockEntity ? 2 : 1;
+        return new AABB(pos).inflate(size);
     }
 }
