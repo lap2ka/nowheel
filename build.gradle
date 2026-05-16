@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.7.4'
+    id 'me.modmuss50.mod-publish-plugin' version '0.8.4'
 }
 
 version = "${mod_version}+${minecraft_version}${loader}"
@@ -65,4 +66,30 @@ tasks.withType(ProcessResources).configureEach {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 17
+}
+
+publishMods {
+    file = tasks.named('remapJar', AbstractArchiveTask).flatMap { it.archiveFile }
+    type = STABLE
+    modLoaders.add("${loader}")
+    changelog = providers.environmentVariable('CHANGELOG').orElse('No changelog provided.')
+
+    displayName = "Create: Nowheel ${mod_version} for ${loader} ${minecraft_version}"
+    version = project.version
+
+    modrinth {
+        projectId = modrinth_id
+        accessToken = providers.environmentVariable('MODRINTH_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        requires { slug = 'create' }
+        requires { slug = 'entityculling' }
+    }
+
+    curseforge {
+        projectId = curseforge_id
+        accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        requires { slug = 'create' }
+        requires { slug = 'entityculling' }
+    }
 }
