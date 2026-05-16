@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "Boost Create mod FPS using occlusion culling",
+  "authors": ["Lap2ka"],
+  "license": "${mod_license}",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.lapt.nowheel.NowheelMod"]
+  },
+  "mixins": [
+    {
+      "config": "nowheel.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": "${loader_version_range}",
+    "minecraft": "${minecraft_version_range}",
+    "create": "*",
+    "entityculling": "*"
+  }
+}

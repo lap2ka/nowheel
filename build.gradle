@@ -1,6 +1,5 @@
 plugins {
-    id 'java-library'
-    id 'net.neoforged.gradle.userdev' version '7.1.26'
+    id 'fabric-loom' version '1.7.4'
 }
 
 version = "${mod_version}+${minecraft_version}${loader}"
@@ -8,11 +7,22 @@ group = mod_group_id
 
 base { archivesName = mod_id }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 repositories {
+    maven { url = 'https://maven.createmod.net/' }
+    maven { url = 'https://mvn.devos.one/releases' }
+    maven { url = 'https://mvn.devos.one/snapshots' }
+    maven { url = 'https://maven.tterrag.com/' }
+    maven { url = 'https://maven.jamieswhiteshirt.com/libs-release' }
+    maven { url = 'https://raw.githubusercontent.com/Fuzss/modresources/main/maven' }
     maven {
-        url = 'https://maven.createmod.net/'
+        url = 'https://jitpack.io/'
+        content { includeGroupAndSubgroups 'com.github' }
+    }
+    maven {
+        url = 'https://maven.ithundxr.dev/mirror'
+        content { includeGroup 'com.tterrag.registrate' }
     }
     maven {
         url = 'https://api.modrinth.com/maven'
@@ -21,44 +31,38 @@ repositories {
     mavenCentral()
 }
 
-runs {
-    configureEach {
-        systemProperty 'forge.logging.markers', 'REGISTRIES'
-        systemProperty 'forge.logging.console.level', 'debug'
-        workingDirectory project.layout.projectDirectory.dir('run').dir(name)
-        modSource project.sourceSets.main
+loom {
+    mixin {
+        defaultRefmapName = 'nowheel.refmap.json'
     }
-    client {}
-}
-
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    compileOnly "com.simibubi.create:create-1.21.1:${create_version}:slim"
-    compileOnly "net.createmod.ponder:Ponder-NeoForge-1.21.1:${ponder_version}"
-    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1:${flywheel_version}"
-    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-1.21.1:${flywheel_version}"
+    modImplementation "maven.modrinth:create-fabric:${create_version}"
+    modImplementation "net.createmod.ponder:Ponder-Fabric-1.20.1:${ponder_version}"
+    modImplementation "dev.engine-room.flywheel:flywheel-fabric-1.20.1:${flywheel_version}"
 
-    compileOnly "maven.modrinth:entityculling:${entityculling_version}"
+    modImplementation "maven.modrinth:entityculling:${entityculling_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [minecraft_version      : minecraft_version,
                              minecraft_version_range: minecraft_version_range,
-                             neo_version            : neo_version,
                              loader_version_range   : loader_version_range,
                              mod_id                 : mod_id,
                              mod_name               : mod_name,
                              mod_license            : mod_license,
                              mod_version            : mod_version,]
     inputs.properties replaceProperties
-    filesMatching(['META-INF/neoforge.mods.toml']) { expand replaceProperties }
+    filesMatching(['fabric.mod.json']) { expand replaceProperties }
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+    options.release = 17
 }
