@@ -26,14 +26,18 @@ public class EntityCullingModMixin {
         cancellable = true
     )
     private void nowheel$properAABB(BlockEntity entity, BlockPos pos, CallbackInfoReturnable<AABB> cir) {
-        switch (entity) {
-            case ChainConveyorBlockEntity chainConveyor -> cir.setReturnValue(CreateBoxes.chainConveyor(chainConveyor, pos));
-            case BeltBlockEntity belt when belt.isController() -> cir.setReturnValue(CreateBoxes.beltController(belt, pos));
-            case FluidTankBlockEntity tank when tank.isController() -> cir.setReturnValue(CreateBoxes.fluidTankController(tank, pos));
-            case TrackBlockEntity track when !track.getConnections().isEmpty() -> cir.setReturnValue(CreateBoxes.track(track, pos));
-            case PulleyBlockEntity rope -> cir.setReturnValue(CreateBoxes.ropePulley(rope, pos));
-            case HosePulleyBlockEntity hose -> cir.setReturnValue(CreateBoxes.hosePulley(hose, pos));
-            case null, default -> {}
+        if (entity instanceof ChainConveyorBlockEntity chainConveyor) {
+            cir.setReturnValue(CreateBoxes.chainConveyor(chainConveyor, pos));
+        } else if (entity instanceof BeltBlockEntity belt && belt.isController()) {
+            cir.setReturnValue(CreateBoxes.beltController(belt, pos));
+        } else if (entity instanceof FluidTankBlockEntity tank && tank.isController()) {
+            cir.setReturnValue(CreateBoxes.fluidTankController(tank, pos));
+        } else if (entity instanceof TrackBlockEntity track && !track.getConnections().isEmpty()) {
+            cir.setReturnValue(CreateBoxes.track(track, pos));
+        } else if (entity instanceof PulleyBlockEntity rope) {
+            cir.setReturnValue(CreateBoxes.ropePulley(rope, pos));
+        } else if (entity instanceof HosePulleyBlockEntity hose) {
+            cir.setReturnValue(CreateBoxes.hosePulley(hose, pos));
         }
     }
 }

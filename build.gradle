@@ -3,7 +3,7 @@ plugins {
     id 'net.neoforged.gradle.userdev' version '7.1.26'
 }
 
-version = mod_version
+version = "${mod_version}+${minecraft_version}${loader}"
 group = mod_group_id
 
 base { archivesName = mod_id }
