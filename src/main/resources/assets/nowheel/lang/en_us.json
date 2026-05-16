@@ -1,0 +1,6 @@
+{
+    "text.nowheel.title": "Nowheel",
+    "text.nowheel.category.general": "General",
+    "text.nowheel.overrideEntityCulling": "Override Entity Culling limits",
+    "text.nowheel.overrideEntityCulling.tooltip": "Override Entity Culling's config to cull contraptions that wouldn't get culled by default"
+}

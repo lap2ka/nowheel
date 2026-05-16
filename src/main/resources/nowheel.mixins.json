@@ -10,6 +10,7 @@
     "BlockEntityStorageMixin",
     "CullTaskMixin",
     "EntityCullableTrackingMixin",
+    "EntityCullingConfigOverrideMixin",
     "EntityCullingModMixin",
     "EntityStorageMixin"
   ],
