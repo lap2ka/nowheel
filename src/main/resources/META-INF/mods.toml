@@ -17,28 +17,28 @@ config = "nowheel.mixins.json"
 
 [[dependencies.${ mod_id }]]
 modId = "forge"
-type = "required"
+mandatory = true
 versionRange = "${forge_version_range}"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.${ mod_id }]]
 modId = "minecraft"
-type = "required"
+mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.${ mod_id }]]
 modId = "create"
-type = "required"
+mandatory = true
 versionRange = "[6.0.8,)"
 ordering = "AFTER"
 side = "CLIENT"
 
 [[dependencies.${ mod_id }]]
 modId = "entityculling"
-type = "required"
+mandatory = true
 versionRange = "[1.9,)"
 ordering = "AFTER"
 side = "CLIENT"
