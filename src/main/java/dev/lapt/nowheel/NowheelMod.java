@@ -15,10 +15,8 @@ public class NowheelMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(
-            BlockEntity::getLevel, VisualizationManager::blockEntities));
-        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(
-            Entity::level, VisualizationManager::entities));
+        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(BlockEntity::getLevel, VisualizationManager::blockEntities));
+        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(Entity::level, VisualizationManager::entities));
         LOGGER.info("Nowheel loaded");
     }
 }

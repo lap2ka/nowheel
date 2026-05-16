@@ -9,7 +9,8 @@
   "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": ["dev.lapt.nowheel.NowheelMod"]
+    "client": ["dev.lapt.nowheel.NowheelMod"],
+    "modmenu": ["dev.lapt.nowheel.config.NowheelModMenu"]
   },
   "contact": {
     "homepage": "https://modrinth.com/mod/create-nowheel",
@@ -27,5 +28,9 @@
     "minecraft": "${minecraft_version_range}",
     "create": "*",
     "entityculling": "*"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "cloth-config": "*"
   }
 }
