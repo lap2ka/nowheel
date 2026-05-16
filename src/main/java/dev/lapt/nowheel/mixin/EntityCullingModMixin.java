@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class EntityCullingModMixin {
 
     @Inject(
-        method = "setupAABB(Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/AABB;",
+        method = "setupAABB",
         at = @At("HEAD"),
         cancellable = true
     )
