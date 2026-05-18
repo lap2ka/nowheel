@@ -13,10 +13,11 @@ public class NowheelMod implements ClientModInitializer {
     public static final String MODID = "nowheel";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    @SuppressWarnings("Convert2MethodRef")
     @Override
     public void onInitializeClient() {
-        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(BlockEntity::getLevel, VisualizationManager::blockEntities));
-        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(Entity::level, VisualizationManager::entities));
+        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(be -> be.getLevel(), VisualizationManager::blockEntities));
+        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(e -> e.level(), VisualizationManager::entities));
         LOGGER.info("Nowheel loaded");
     }
 }
