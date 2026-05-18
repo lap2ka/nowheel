@@ -26,9 +26,10 @@ public class NowheelMod {
 
     private boolean sableHooked = false;
 
+    @SuppressWarnings("Convert2MethodRef")
     public NowheelMod(ModContainer container) {
-        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(BlockEntity::getLevel, VisualizationManager::blockEntities));
-        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(Entity::level, VisualizationManager::entities));
+        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(be -> be.getLevel(), VisualizationManager::blockEntities));
+        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(e -> e.level(), VisualizationManager::entities));
 
         if (ModList.get().isLoaded("cloth_config")) {
             Supplier<IConfigScreenFactory> configScreen = () -> (mc, previousScreen) -> NowheelConfigScreen.create(previousScreen);
