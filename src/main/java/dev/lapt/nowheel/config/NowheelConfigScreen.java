@@ -24,7 +24,7 @@ public final class NowheelConfigScreen {
 
         general.addEntry(
             entry.startBooleanToggle(Component.translatable("text.nowheel.overrideEntityCulling"), config.overrideEntityCulling)
-                .setDefaultValue(true)
+                .setDefaultValue(false)
                 .setTooltip(Component.translatable("text.nowheel.overrideEntityCulling.tooltip"))
                 .setSaveConsumer(v -> config.overrideEntityCulling = v)
                 .build()
