@@ -14,7 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 // Lots of Create stuff marks itself as shouldRenderOffScreen which EntityCulling happily
 // respects. Cull those anyway. We make AABBs in CreateBoxes for the
 // stuff that breaks
-@Mixin(value = BlockEntityRenderDispatcher.class, priority = 500)
+@Mixin(
+    value = BlockEntityRenderDispatcher.class,
+    priority = 500
+)
 public abstract class BlockEntityRenderDispatcherOcclusionCullMixin {
 
     @Inject(
@@ -22,8 +25,7 @@ public abstract class BlockEntityRenderDispatcherOcclusionCullMixin {
         at = @At("HEAD"),
         cancellable = true
     )
-    private void nowheel$cullEvenWhenOffScreen(BlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buf, CallbackInfo ci)
-    {
+    private void nowheel$cullEvenWhenOffScreen(BlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buf, CallbackInfo ci) {
         if (EntityCullingModBase.instance.config.skipBlockEntityCulling) return;
         if (!(be instanceof Cullable c)) return;
         if (c.isForcedVisible() || !c.isCulled()) return;

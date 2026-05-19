@@ -8,8 +8,7 @@ import net.minecraft.network.chat.Component;
 
 public final class NowheelConfigScreen {
 
-    private NowheelConfigScreen() {
-    }
+    private NowheelConfigScreen() { }
 
     public static Screen create(Screen parent) {
         NowheelConfig config = NowheelConfig.get();

@@ -12,7 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = EntityCullingModBase.class, remap = false)
+@Mixin(
+    value = EntityCullingModBase.class,
+    remap = false
+)
 public class EntityCullingConfigOverrideMixin {
 
     @Unique
@@ -24,9 +27,12 @@ public class EntityCullingConfigOverrideMixin {
     private static final ResourceLocation HOSE_PULLEY = new ResourceLocation("create", "hose_pulley");
 
     @ModifyExpressionValue(
-        method = "onInitialize", at = @At(
-        value = "FIELD", target = "Ldev/tr7zw/entityculling/versionless/Config;tracingDistance:I", opcode = Opcodes.GETFIELD
-    )
+        method = "onInitialize",
+        at = @At(
+            value = "FIELD",
+            target = "Ldev/tr7zw/entityculling/versionless/Config;tracingDistance:I",
+            opcode = Opcodes.GETFIELD
+        )
     )
     private int nowheel$overrideCullingLimits(int original) {
         if (!NowheelConfig.get().overrideEntityCulling) {
@@ -35,7 +41,10 @@ public class EntityCullingConfigOverrideMixin {
         return Math.max(original, NowheelConfig.TRACING_DISTANCE_OVERRIDE);
     }
 
-    @Inject(method = "clientTick", at = @At("TAIL"))
+    @Inject(
+        method = "clientTick",
+        at = @At("TAIL")
+    )
     private void nowheel$overrideWhitelist(CallbackInfo ci) {
         if (nowheel$overridenWhitelist || !NowheelConfig.get().overrideEntityCulling) {
             return;

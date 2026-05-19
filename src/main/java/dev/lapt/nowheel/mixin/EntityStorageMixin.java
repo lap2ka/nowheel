@@ -11,11 +11,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 // just to be safe ig
-@Mixin(value = EntityStorage.class, remap = false)
+@Mixin(
+    value = EntityStorage.class,
+    remap = false
+)
 public abstract class EntityStorageMixin {
 
     @Inject(
-        method = "willAccept", at = @At("HEAD"), cancellable = true
+        method = "willAccept",
+        at = @At("HEAD"),
+        cancellable = true
     )
     private void nowheel$rejectCulledAdd(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if ((Object) entity instanceof Cullable c && !c.isForcedVisible() && c.isCulled()) {
@@ -28,8 +33,7 @@ public abstract class EntityStorageMixin {
         at = @At("HEAD"),
         cancellable = true
     )
-    private void nowheel$skipCulledCreate(VisualizationContext context, Entity obj, float partialTick, CallbackInfoReturnable<EntityVisual<?>> cir)
-    {
+    private void nowheel$skipCulledCreate(VisualizationContext context, Entity obj, float partialTick, CallbackInfoReturnable<EntityVisual<?>> cir) {
         if ((Object) obj instanceof Cullable c && !c.isForcedVisible() && c.isCulled()) {
             cir.setReturnValue(null);
         }

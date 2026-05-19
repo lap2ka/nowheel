@@ -18,7 +18,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 // Fallbacks for the stuff that breaks
-@Mixin(value = EntityCullingMod.class, remap = false)
+@Mixin(
+    value = EntityCullingMod.class,
+    remap = false
+)
 public class EntityCullingModMixin {
 
     @Inject(
@@ -29,17 +32,23 @@ public class EntityCullingModMixin {
     private void nowheel$properAABB(BlockEntity entity, BlockPos pos, CallbackInfoReturnable<AABB> cir) {
         if (entity instanceof ChainConveyorBlockEntity chainConveyor) {
             cir.setReturnValue(CreateBoxes.chainConveyor(chainConveyor, pos));
-        } else if (entity instanceof BeltBlockEntity belt && belt.isController()) {
+        }
+        else if (entity instanceof BeltBlockEntity belt && belt.isController()) {
             cir.setReturnValue(CreateBoxes.beltController(belt, pos));
-        } else if (entity instanceof FluidTankBlockEntity tank && tank.isController()) {
+        }
+        else if (entity instanceof FluidTankBlockEntity tank && tank.isController()) {
             cir.setReturnValue(CreateBoxes.fluidTankController(tank, pos));
-        } else if (entity instanceof TrackBlockEntity track && !track.getConnections().isEmpty()) {
+        }
+        else if (entity instanceof TrackBlockEntity track && !track.getConnections().isEmpty()) {
             cir.setReturnValue(CreateBoxes.track(track, pos));
-        } else if (entity instanceof PulleyBlockEntity rope) {
+        }
+        else if (entity instanceof PulleyBlockEntity rope) {
             cir.setReturnValue(CreateBoxes.ropePulley(rope, pos));
-        } else if (entity instanceof HosePulleyBlockEntity hose) {
+        }
+        else if (entity instanceof HosePulleyBlockEntity hose) {
             cir.setReturnValue(CreateBoxes.hosePulley(hose, pos));
-        } else if (entity instanceof WaterWheelBlockEntity wheel) {
+        }
+        else if (entity instanceof WaterWheelBlockEntity wheel) {
             cir.setReturnValue(CreateBoxes.waterWheel(wheel, pos));
         }
     }

@@ -12,11 +12,7 @@ public final class FlywheelVisualToggleListener<T> implements CullTransitionList
     private final Function<T, Level> levelOf;
     private final Function<VisualizationManager, VisualManager<T>> managerOf;
 
-    public FlywheelVisualToggleListener(
-        Function<T, Level> levelOf,
-        Function<VisualizationManager, VisualManager<T>> managerOf
-    )
-    {
+    public FlywheelVisualToggleListener(Function<T, Level> levelOf, Function<VisualizationManager, VisualManager<T>> managerOf) {
         this.levelOf = levelOf;
         this.managerOf = managerOf;
     }
