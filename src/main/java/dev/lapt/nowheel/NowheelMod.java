@@ -57,7 +57,6 @@ public class NowheelMod {
         sableHooked = true;
         NeoForge.EVENT_BUS.unregister(this);
         ec.addDynamicEntityWhitelist(SableCompat::onSubLevel);
-        ec.addDynamicBlockEntityWhitelist(SableCompat::onSubLevel);
         LOGGER.info("Nowheel Sable compat active");
     }
 }
