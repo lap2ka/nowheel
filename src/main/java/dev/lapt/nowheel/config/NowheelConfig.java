@@ -10,7 +10,10 @@ import java.nio.file.Files;
 
 public class NowheelConfig {
 
-    public boolean overrideEntityCulling = true;
+    public boolean overrideEntityCulling = false;
+
+    public static final int TRACING_DISTANCE_OVERRIDE = 384;
+    public static final int HITBOX_LIMIT_OVERRIDE = 1000;
 
     private static final File FILE = new File("config", "nowheel.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

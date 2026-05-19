@@ -1,6 +1,8 @@
 package dev.lapt.nowheel.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.engine_room.flywheel.lib.visualization.VisualizationHelper;
+import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.CullTask;
 import dev.tr7zw.entityculling.EntityCullingModBase;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
@@ -8,6 +10,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Position;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,14 +40,25 @@ public abstract class CullTaskMixin {
         return null;
     }
 
+    @ModifyExpressionValue(
+        method = "<init>",
+        at = @At(value = "FIELD", target = "Ldev/tr7zw/entityculling/versionless/Config;hitboxLimit:I", opcode = Opcodes.GETFIELD)
+    )
+    private int nowheel$extendHitboxLimit(int original) {
+        return NowheelConfig.get().overrideEntityCulling ? Math.max(original, NowheelConfig.HITBOX_LIMIT_OVERRIDE) : original;
+    }
+
     // Flywheel renders its stuff way past the vanilla 64
+    @SuppressWarnings("UnqualifiedMemberReference")
     @Redirect(
         method = "cullBlockEntities", at = @At(
         value = "INVOKE", target = "Ldev/tr7zw/entityculling/CullTask;closerThan"
     )
     )
     private boolean nowheel$extendCloserThan(BlockPos blockPos, Position position, double original) {
-        double d = EntityCullingModBase.instance.config.tracingDistance;
+        double d = NowheelConfig.get().overrideEntityCulling ?
+            Math.max(NowheelConfig.TRACING_DISTANCE_OVERRIDE, EntityCullingModBase.instance.config.tracingDistance) :
+            EntityCullingModBase.instance.config.tracingDistance;
         double dx = (blockPos.getX() + 0.5) - position.x();
         double dy = (blockPos.getY() + 0.5) - position.y();
         double dz = (blockPos.getZ() + 0.5) - position.z();
