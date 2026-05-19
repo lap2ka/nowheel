@@ -20,8 +20,7 @@ import net.minecraft.world.phys.AABB;
 // Fallbacks for the stuff that breaks
 public final class CreateBoxes {
 
-    private CreateBoxes() {
-    }
+    private CreateBoxes() { }
 
     // Stolen from SmartBounds lol
     public static AABB chainConveyor(ChainConveyorBlockEntity ccbe, BlockPos pos) {

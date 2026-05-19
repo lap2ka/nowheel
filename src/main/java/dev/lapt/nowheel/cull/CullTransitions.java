@@ -13,8 +13,7 @@ public final class CullTransitions<T> {
 
     private final List<CullTransitionListener<T>> listeners = new CopyOnWriteArrayList<>();
 
-    private CullTransitions() {
-    }
+    private CullTransitions() { }
 
     public void register(CullTransitionListener<T> listener) {
         listeners.add(listener);
@@ -25,8 +24,7 @@ public final class CullTransitions<T> {
             try {
                 l.onCullChanged(subject, nowCulled);
             } catch (Throwable t) {
-                NowheelMod.LOGGER.error(
-                    "[nowheel] cull-transition listener {} errored", l.getClass().getName(), t);
+                NowheelMod.LOGGER.error("[nowheel] cull-transition listener {} errored", l.getClass().getName(), t);
             }
         }
     }

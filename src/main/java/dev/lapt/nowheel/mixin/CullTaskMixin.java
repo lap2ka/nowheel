@@ -17,21 +17,25 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 
-@Mixin(value = CullTask.class, remap = false)
+@Mixin(
+    value = CullTask.class,
+    remap = false
+)
 public abstract class CullTaskMixin {
 
     @Unique
-    private static final BlockEntityRenderer<BlockEntity> nowheel$FLYWHEEL_VISUAL_RENDERER = (blockEntity, partialTick, poseStack, bufferSource, packedLight, packedOverlay) -> {};
+    private static final BlockEntityRenderer<BlockEntity> nowheel$FLYWHEEL_VISUAL_RENDERER = (blockEntity, partialTick, poseStack, bufferSource, packedLight, packedOverlay) -> { };
 
     // in my testing some flywheel stuff (simple kinetic, etc) didn't appear to have a renderer,
     // nor did they subsequently get culled, so we give them one
     @SuppressWarnings({"rawtypes", "MixinAnnotationTarget", "InvalidInjectorMethodSignature"})
     @Redirect(
-        method = "cullBlockEntities", at = @At(
-        value = "INVOKE",
-        target = "Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;getRenderer(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;",
-        remap = true
-    )
+        method = "cullBlockEntities",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;getRenderer(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;",
+            remap = true
+        )
     )
     private BlockEntityRenderer nowheel$includeFlywheelOnlyVisuals(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity) {
         BlockEntityRenderer renderer = dispatcher.getRenderer(blockEntity);
@@ -42,7 +46,11 @@ public abstract class CullTaskMixin {
 
     @ModifyExpressionValue(
         method = "<init>",
-        at = @At(value = "FIELD", target = "Ldev/tr7zw/entityculling/versionless/Config;hitboxLimit:I", opcode = Opcodes.GETFIELD)
+        at = @At(
+            value = "FIELD",
+            target = "Ldev/tr7zw/entityculling/versionless/Config;hitboxLimit:I",
+            opcode = Opcodes.GETFIELD
+        )
     )
     private int nowheel$extendHitboxLimit(int original) {
         return NowheelConfig.get().overrideEntityCulling ? Math.max(original, NowheelConfig.HITBOX_LIMIT_OVERRIDE) : original;
@@ -51,9 +59,11 @@ public abstract class CullTaskMixin {
     // Flywheel renders its stuff way past the vanilla 64
     @SuppressWarnings("UnqualifiedMemberReference")
     @Redirect(
-        method = "cullBlockEntities", at = @At(
-        value = "INVOKE", target = "Ldev/tr7zw/entityculling/CullTask;closerThan"
-    )
+        method = "cullBlockEntities",
+        at = @At(
+            value = "INVOKE",
+            target = "Ldev/tr7zw/entityculling/CullTask;closerThan"
+        )
     )
     private boolean nowheel$extendCloserThan(BlockPos blockPos, Position position, double original) {
         double d = NowheelConfig.get().overrideEntityCulling ?

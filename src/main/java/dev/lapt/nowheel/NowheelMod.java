@@ -5,8 +5,6 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import dev.lapt.nowheel.config.NowheelConfigScreen;
 import dev.lapt.nowheel.cull.CullTransitions;
 import dev.lapt.nowheel.flywheel.FlywheelVisualToggleListener;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModList;
