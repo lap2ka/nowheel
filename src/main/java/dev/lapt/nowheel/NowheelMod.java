@@ -7,8 +7,6 @@ import dev.lapt.nowheel.config.NowheelConfigScreen;
 import dev.lapt.nowheel.cull.CullTransitions;
 import dev.lapt.nowheel.flywheel.FlywheelVisualToggleListener;
 import dev.tr7zw.entityculling.EntityCullingModBase;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
@@ -19,7 +17,10 @@ import org.slf4j.Logger;
 
 import java.util.function.Supplier;
 
-@Mod(value = NowheelMod.MODID, dist = net.neoforged.api.distmarker.Dist.CLIENT)
+@Mod(
+    value = NowheelMod.MODID,
+    dist = net.neoforged.api.distmarker.Dist.CLIENT
+)
 public class NowheelMod {
     public static final String MODID = "nowheel";
     public static final Logger LOGGER = LogUtils.getLogger();

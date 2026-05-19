@@ -6,8 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public final class SableCompat {
 
-    private SableCompat() {
-    }
+    private SableCompat() { }
 
     public static boolean onSubLevel(Entity entity) {
         return SableCompanion.INSTANCE.getContaining(entity) != null;
