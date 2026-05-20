@@ -32,7 +32,7 @@ public class NowheelConfig {
             try {
                 config = GSON.fromJson(Files.readString(FILE.toPath()), NowheelConfig.class);
             } catch (Exception ex) {
-                NowheelMod.LOGGER.error("[nowheel] error loading nowheel config", ex);
+                NowheelMod.LOGGER.error("Error loading nowheel config", ex);
             }
         }
         if (config == null) {
@@ -46,7 +46,7 @@ public class NowheelConfig {
         try {
             Files.writeString(FILE.toPath(), GSON.toJson(this));
         } catch (IOException ex) {
-            NowheelMod.LOGGER.error("[nowheel] error writing nowheel config", ex);
+            NowheelMod.LOGGER.error("Error writing nowheel config", ex);
         }
     }
 }
