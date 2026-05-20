@@ -24,7 +24,7 @@ public final class CullTransitions<T> {
             try {
                 l.onCullChanged(subject, nowCulled);
             } catch (Throwable t) {
-                NowheelMod.LOGGER.error("[nowheel] cull-transition listener {} errored", l.getClass().getName(), t);
+                NowheelMod.LOGGER.error("Cull-transition listener {} errored", l.getClass().getName(), t);
             }
         }
     }
