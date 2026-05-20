@@ -60,6 +60,7 @@ public class EntityCullingConfigOverrideMixin {
         try {
             blockEntityWhitelist.remove(BuiltInRegistries.BLOCK_ENTITY_TYPE.get(ROPE_PULLEY));
             blockEntityWhitelist.remove(BuiltInRegistries.BLOCK_ENTITY_TYPE.get(HOSE_PULLEY));
+            NowheelMod.LOGGER.info("Overriden Entity Culling whitelist");
         } catch (final Throwable t) {
             NowheelMod.LOGGER.error("Error overriding whitelist, what the helly: ", t);
         }
