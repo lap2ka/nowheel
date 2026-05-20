@@ -1,22 +1,30 @@
 package dev.lapt.nowheel.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import dev.lapt.nowheel.NowheelMod;
 import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.EntityCullingModBase;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Set;
 
 @Mixin(
     value = EntityCullingModBase.class,
     remap = false
 )
 public class EntityCullingConfigOverrideMixin {
+
+    @Shadow
+    public Set<BlockEntityType<?>> blockEntityWhitelist;
 
     @Unique
     private boolean nowheel$overridenWhitelist = false;
@@ -49,10 +57,12 @@ public class EntityCullingConfigOverrideMixin {
         if (nowheel$overridenWhitelist || !NowheelConfig.get().overrideEntityCulling) {
             return;
         }
-        EntityCullingModBase ec = (EntityCullingModBase) (Object) this;
-
-        ec.blockEntityWhitelist.remove(BuiltInRegistries.BLOCK_ENTITY_TYPE.get(ROPE_PULLEY));
-        ec.blockEntityWhitelist.remove(BuiltInRegistries.BLOCK_ENTITY_TYPE.get(HOSE_PULLEY));
+        try {
+            blockEntityWhitelist.remove(BuiltInRegistries.BLOCK_ENTITY_TYPE.get(ROPE_PULLEY));
+            blockEntityWhitelist.remove(BuiltInRegistries.BLOCK_ENTITY_TYPE.get(HOSE_PULLEY));
+        } catch (final Throwable t) {
+            NowheelMod.LOGGER.error("Error overriding whitelist, what the helly: ", t);
+        }
         nowheel$overridenWhitelist = true;
     }
 }
