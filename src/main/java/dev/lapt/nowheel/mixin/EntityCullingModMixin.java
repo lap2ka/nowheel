@@ -1,12 +1,10 @@
 package dev.lapt.nowheel.mixin;
 
-import com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
-import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
 import com.simibubi.create.content.kinetics.chainConveyor.ChainConveyorBlockEntity;
 import com.simibubi.create.content.kinetics.waterwheel.WaterWheelBlockEntity;
 import com.simibubi.create.content.trains.track.TrackBlockEntity;
+import com.simibubi.create.foundation.blockEntity.CachedRenderBBBlockEntity;
 import dev.lapt.nowheel.bbox.CreateBoxes;
 import dev.tr7zw.entityculling.EntityCullingMod;
 import net.minecraft.core.BlockPos;
@@ -30,26 +28,24 @@ public class EntityCullingModMixin {
         cancellable = true
     )
     private void nowheel$properAABB(BlockEntity entity, BlockPos pos, CallbackInfoReturnable<AABB> cir) {
-        if (entity instanceof ChainConveyorBlockEntity chainConveyor) {
-            cir.setReturnValue(CreateBoxes.chainConveyor(chainConveyor, pos));
-        }
-        else if (entity instanceof BeltBlockEntity belt && belt.isController()) {
-            cir.setReturnValue(CreateBoxes.beltController(belt, pos));
-        }
-        else if (entity instanceof FluidTankBlockEntity tank && tank.isController()) {
-            cir.setReturnValue(CreateBoxes.fluidTankController(tank, pos));
-        }
-        else if (entity instanceof TrackBlockEntity track && !track.getConnections().isEmpty()) {
-            cir.setReturnValue(CreateBoxes.track(track, pos));
-        }
-        else if (entity instanceof PulleyBlockEntity rope) {
-            cir.setReturnValue(CreateBoxes.ropePulley(rope, pos));
-        }
-        else if (entity instanceof HosePulleyBlockEntity hose) {
-            cir.setReturnValue(CreateBoxes.hosePulley(hose, pos));
-        }
-        else if (entity instanceof WaterWheelBlockEntity wheel) {
-            cir.setReturnValue(CreateBoxes.waterWheel(wheel, pos));
+        if (entity instanceof CachedRenderBBBlockEntity crbb) {
+            if (entity instanceof ChainConveyorBlockEntity chainConveyor) {
+                cir.setReturnValue(CreateBoxes.chainConveyor(chainConveyor, pos));
+            }
+            else if (entity instanceof BeltBlockEntity belt && belt.isController()) {
+                cir.setReturnValue(CreateBoxes.beltController(belt, pos));
+            }
+            else if (entity instanceof TrackBlockEntity track && !track.getConnections().isEmpty()) {
+                cir.setReturnValue(CreateBoxes.track(track, pos));
+            }
+            else if (entity instanceof WaterWheelBlockEntity wheel) {
+                cir.setReturnValue(CreateBoxes.waterWheel(wheel, pos));
+            }
+            else {
+                AABB bb = crbb.getRenderBoundingBox();
+                if (Double.isInfinite(bb.getXsize())) return;
+                cir.setReturnValue(bb);
+            }
         }
     }
 }
