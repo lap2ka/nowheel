@@ -1,8 +1,5 @@
 package dev.lapt.nowheel.bbox;
 
-import com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
-import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.content.kinetics.belt.BeltBlock;
 import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
 import com.simibubi.create.content.kinetics.belt.BeltSlope;
@@ -23,6 +20,7 @@ public final class CreateBoxes {
     private CreateBoxes() { }
 
     // Stolen from SmartBounds lol
+    // Not really needed with the crbb.getRenderBoundingBox thing, but players without Smart Bounds will get miserable perf without this
     public static AABB chainConveyor(ChainConveyorBlockEntity ccbe, BlockPos pos) {
         double minX = pos.getX();
         double minY = pos.getY();
@@ -73,22 +71,6 @@ public final class CreateBoxes {
             if (b != null) box = box.minmax(b);
         }
         return box;
-    }
-
-    public static AABB ropePulley(PulleyBlockEntity pulley, BlockPos pos) {
-        int extend = Math.max(0, (int) Math.ceil(pulley.offset));
-        return new AABB(pos).expandTowards(0, -extend, 0);
-    }
-
-    public static AABB hosePulley(HosePulleyBlockEntity pulley, BlockPos pos) {
-        int extend = Math.max(0, (int) Math.ceil(pulley.getInterpolatedOffset(0f)));
-        return new AABB(pos).expandTowards(0, -extend, 0);
-    }
-
-    public static AABB fluidTankController(FluidTankBlockEntity tank, BlockPos pos) {
-        int width = Math.max(1, tank.getWidth()) - 1;
-        int height = Math.max(1, tank.getHeight()) - 1;
-        return new AABB(pos).expandTowards(width, height, width);
     }
 
     public static AABB waterWheel(WaterWheelBlockEntity wheel, BlockPos pos) {
