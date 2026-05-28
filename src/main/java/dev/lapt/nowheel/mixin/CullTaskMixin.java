@@ -1,6 +1,8 @@
 package dev.lapt.nowheel.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.engine_room.flywheel.lib.visualization.VisualizationHelper;
 import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.CullTask;
@@ -28,8 +30,8 @@ public abstract class CullTaskMixin {
 
     // in my testing some flywheel stuff (simple kinetic, etc) didn't appear to have a renderer,
     // nor did they subsequently get culled, so we give them one
-    @SuppressWarnings({"rawtypes", "MixinAnnotationTarget", "InvalidInjectorMethodSignature"})
-    @Redirect(
+    @SuppressWarnings({"rawtypes"})
+    @WrapOperation(
         method = "cullBlockEntities",
         at = @At(
             value = "INVOKE",
@@ -37,8 +39,8 @@ public abstract class CullTaskMixin {
             remap = true
         )
     )
-    private BlockEntityRenderer nowheel$includeFlywheelOnlyVisuals(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity) {
-        BlockEntityRenderer renderer = dispatcher.getRenderer(blockEntity);
+    private BlockEntityRenderer nowheel$includeFlywheelOnlyVisuals(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity, Operation<BlockEntityRenderer> original) {
+        BlockEntityRenderer renderer = original.call(dispatcher, blockEntity);
         if (renderer != null) return renderer;
         if (VisualizationHelper.canVisualize(blockEntity)) return nowheel$FLYWHEEL_VISUAL_RENDERER;
         return null;
