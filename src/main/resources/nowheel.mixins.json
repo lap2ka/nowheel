@@ -11,7 +11,8 @@
     "EntityCullableTrackingMixin",
     "EntityCullingConfigOverrideMixin",
     "EntityCullingModMixin",
-    "EntityStorageMixin"
+    "EntityStorageMixin",
+    "CreateTickCullMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -29,6 +29,14 @@ public final class NowheelConfigScreen {
                 .build()
         );
 
+        general.addEntry(
+            entry.startBooleanToggle(Component.translatable("text.nowheel.cullCreateTicking"), config.tickCulling)
+                .setDefaultValue(true)
+                .setTooltip(Component.translatable("text.nowheel.cullCreateTicking.tooltip"))
+                .setSaveConsumer(v -> config.tickCulling = v)
+                .build()
+        );
+
         return builder.build();
     }
 }
