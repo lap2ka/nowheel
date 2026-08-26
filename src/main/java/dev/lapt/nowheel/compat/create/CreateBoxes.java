@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.bbox;
+package dev.lapt.nowheel.compat.create;
 
 import com.simibubi.create.content.kinetics.belt.BeltBlock;
 import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;

@@ -1,11 +1,11 @@
-package dev.lapt.nowheel.mixin;
+package dev.lapt.nowheel.mixin.entity_culling;
 
 import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
 import com.simibubi.create.content.kinetics.chainConveyor.ChainConveyorBlockEntity;
 import com.simibubi.create.content.kinetics.waterwheel.WaterWheelBlockEntity;
 import com.simibubi.create.content.trains.track.TrackBlockEntity;
 import com.simibubi.create.foundation.blockEntity.CachedRenderBBBlockEntity;
-import dev.lapt.nowheel.bbox.CreateBoxes;
+import dev.lapt.nowheel.compat.create.CreateBoxes;
 import dev.tr7zw.entityculling.EntityCullingMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;

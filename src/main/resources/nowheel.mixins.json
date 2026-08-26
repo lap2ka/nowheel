@@ -4,15 +4,14 @@
   "package": "dev.lapt.nowheel.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "BlockEntityCullableTrackingMixin",
-    "BlockEntityRenderDispatcherOcclusionCullMixin",
-    "BlockEntityStorageMixin",
-    "CullTaskMixin",
-    "EntityCullableTrackingMixin",
-    "EntityCullingConfigOverrideMixin",
-    "EntityCullingModMixin",
-    "EntityStorageMixin",
-    "CreateTickCullMixin"
+    "BlockEntityRenderDispatcherMixin",
+    "entity_culling.CullTaskMixin",
+    "entity_culling.config_override.EntityCullingModBaseMixin",
+    "entity_culling.EntityCullingModMixin",
+    "create.tick_cull.SmartBlockEntityTickerMixin",
+    "flywheel.visual_pausing.AbstractBlockEntityVisualMixin",
+    "flywheel.visual_pausing.AbstractEntityVisualMixin",
+    "flywheel.visual_pausing.StorageMixin"
   ],
   "injectors": {
     "defaultRequire": 1

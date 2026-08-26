@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.mixin;
+package dev.lapt.nowheel.mixin.entity_culling;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.engine_room.flywheel.lib.visualization.VisualizationHelper;

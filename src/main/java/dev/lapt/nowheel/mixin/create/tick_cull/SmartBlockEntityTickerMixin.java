@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.mixin;
+package dev.lapt.nowheel.mixin.create.tick_cull;
 
 import com.simibubi.create.content.contraptions.IControlContraption;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntityTicker;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     value = SmartBlockEntityTicker.class,
     remap = false
 )
-public abstract class CreateTickCullMixin {
+public abstract class SmartBlockEntityTickerMixin {
 
     @Inject(
         method = "tick",

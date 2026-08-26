@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.mixin;
+package dev.lapt.nowheel.mixin.entity_culling.config_override;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.lapt.nowheel.NowheelMod;
@@ -21,7 +21,7 @@ import java.util.Set;
     value = EntityCullingModBase.class,
     remap = false
 )
-public class EntityCullingConfigOverrideMixin {
+public class EntityCullingModBaseMixin {
 
     @Shadow
     public Set<BlockEntityType<?>> blockEntityWhitelist;

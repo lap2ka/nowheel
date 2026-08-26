@@ -1,11 +1,8 @@
 package dev.lapt.nowheel;
 
 import com.mojang.logging.LogUtils;
-import dev.engine_room.flywheel.api.visualization.VisualizationManager;
-import dev.lapt.nowheel.compat.SableCompat;
+import dev.lapt.nowheel.compat.sable.SableCompat;
 import dev.lapt.nowheel.config.NowheelConfigScreen;
-import dev.lapt.nowheel.cull.CullTransitions;
-import dev.lapt.nowheel.flywheel.FlywheelVisualToggleListener;
 import dev.tr7zw.entityculling.EntityCullingModBase;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -15,6 +12,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @Mod(
@@ -26,19 +24,17 @@ public class NowheelMod {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     private boolean sableHooked = false;
+    private Consumer<ClientTickEvent.Post> sableHook;
 
-    @SuppressWarnings("Convert2MethodRef")
     public NowheelMod(ModContainer container) {
-        CullTransitions.BE.register(new FlywheelVisualToggleListener<>(be -> be.getLevel(), VisualizationManager::blockEntities));
-        CullTransitions.ENTITY.register(new FlywheelVisualToggleListener<>(e -> e.level(), VisualizationManager::entities));
-
         if (ModList.get().isLoaded("cloth_config")) {
             Supplier<IConfigScreenFactory> configScreen = () -> (mc, previousScreen) -> NowheelConfigScreen.create(previousScreen);
             container.registerExtensionPoint(IConfigScreenFactory.class, configScreen);
         }
 
         if (ModList.get().isLoaded("sablecompanion")) {
-            NeoForge.EVENT_BUS.addListener(this::hookSable);
+            sableHook = this::hookSable;
+            NeoForge.EVENT_BUS.addListener(sableHook);
         }
 
         LOGGER.info("Nowheel loaded");
@@ -55,7 +51,7 @@ public class NowheelMod {
             return;
         }
         sableHooked = true;
-        NeoForge.EVENT_BUS.unregister(this);
+        NeoForge.EVENT_BUS.unregister(sableHook);
         ec.addDynamicEntityWhitelist(SableCompat::onSubLevel);
         LOGGER.info("Nowheel Sable compat active");
     }

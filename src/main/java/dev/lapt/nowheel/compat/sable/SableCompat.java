@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.compat;
+package dev.lapt.nowheel.compat.sable;
 
 import dev.ryanhcode.sable.companion.SableCompanion;
 import net.minecraft.world.entity.Entity;
