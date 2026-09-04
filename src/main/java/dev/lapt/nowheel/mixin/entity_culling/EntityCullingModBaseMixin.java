@@ -1,13 +1,11 @@
-package dev.lapt.nowheel.mixin.entity_culling.config_override;
+package dev.lapt.nowheel.mixin.entity_culling;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.lapt.nowheel.NowheelMod;
 import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.EntityCullingModBase;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,27 +25,11 @@ public class EntityCullingModBaseMixin {
     public Set<BlockEntityType<?>> blockEntityWhitelist;
 
     @Unique
-    private boolean nowheel$overridenWhitelist = false;
-
-    @Unique
     private static final ResourceLocation ROPE_PULLEY = ResourceLocation.parse("create:rope_pulley");
     @Unique
     private static final ResourceLocation HOSE_PULLEY = ResourceLocation.parse("create:hose_pulley");
-
-    @ModifyExpressionValue(
-        method = "onInitialize",
-        at = @At(
-            value = "FIELD",
-            target = "Ldev/tr7zw/entityculling/versionless/Config;tracingDistance:I",
-            opcode = Opcodes.GETFIELD
-        )
-    )
-    private int nowheel$overrideCullingLimits(int original) {
-        if (!NowheelConfig.get().overrideEntityCulling) {
-            return original;
-        }
-        return Math.max(original, NowheelConfig.TRACING_DISTANCE_OVERRIDE);
-    }
+    @Unique
+    private boolean nowheel$overridenWhitelist = false;
 
     @Inject(
         method = "clientTick",

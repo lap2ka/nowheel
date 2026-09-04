@@ -37,6 +37,14 @@ public final class NowheelConfigScreen {
                 .build()
         );
 
+        general.addEntry(
+            entry.startBooleanToggle(Component.translatable("text.nowheel.distanceCulling"), config.distanceCulling)
+                .setDefaultValue(true)
+                .setTooltip(Component.translatable("text.nowheel.distanceCulling.tooltip"))
+                .setSaveConsumer(v -> config.distanceCulling = v)
+                .build()
+        );
+
         return builder.build();
     }
 }

@@ -4,7 +4,6 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.engine_room.flywheel.lib.visualization.VisualizationHelper;
 import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.CullTask;
-import dev.tr7zw.entityculling.EntityCullingModBase;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.BlockPos;
@@ -65,13 +64,7 @@ public abstract class CullTaskMixin {
             target = "Ldev/tr7zw/entityculling/CullTask;closerThan"
         )
     )
-    private boolean nowheel$extendCloserThan(BlockPos blockPos, Position position, double original) {
-        double d = NowheelConfig.get().overrideEntityCulling ?
-            Math.max(NowheelConfig.TRACING_DISTANCE_OVERRIDE, EntityCullingModBase.instance.config.tracingDistance) :
-            EntityCullingModBase.instance.config.tracingDistance;
-        double dx = (blockPos.getX() + 0.5) - position.x();
-        double dy = (blockPos.getY() + 0.5) - position.y();
-        double dz = (blockPos.getZ() + 0.5) - position.z();
-        return dx * dx + dy * dy + dz * dz < d * d;
+    private boolean nowheel$extendCloserThan(BlockPos blockPos, Position position, double d) {
+        return true;
     }
 }

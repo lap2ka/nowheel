@@ -12,8 +12,8 @@ public class NowheelConfig {
 
     public boolean overrideEntityCulling = false;
     public boolean tickCulling = true;
+    public boolean distanceCulling = true;
 
-    public static final int TRACING_DISTANCE_OVERRIDE = 384;
     public static final int HITBOX_LIMIT_OVERRIDE = 1000;
 
     private static final File FILE = new File("config", "nowheel.json");

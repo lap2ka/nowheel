@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static dev.lapt.nowheel.util.IsCulledUtil.isCulled;
+
 @Mixin(
     value = SmartBlockEntityTicker.class,
     remap = false
@@ -31,8 +33,8 @@ public abstract class SmartBlockEntityTickerMixin {
         if (!level.isClientSide) return;
         if (EntityCullingModBase.instance.config.skipBlockEntityCulling) return;
         if (be instanceof IControlContraption) return;
-        if (!(be instanceof Cullable c)) return;
-        if (c.isForcedVisible() || !c.isCulled()) return;
+        if (!(be instanceof Cullable)) return;
+        if (!isCulled(be)) return;
         ci.cancel();
     }
 }

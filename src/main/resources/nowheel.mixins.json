@@ -6,7 +6,7 @@
   "client": [
     "BlockEntityRenderDispatcherMixin",
     "entity_culling.CullTaskMixin",
-    "entity_culling.config_override.EntityCullingModBaseMixin",
+    "entity_culling.EntityCullingModBaseMixin",
     "entity_culling.EntityCullingModMixin",
     "create.tick_cull.SmartBlockEntityTickerMixin",
     "flywheel.visual_pausing.AbstractBlockEntityVisualMixin",
