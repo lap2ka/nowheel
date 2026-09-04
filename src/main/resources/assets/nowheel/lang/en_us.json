@@ -3,8 +3,8 @@
     "text.nowheel.category.general": "General",
     "text.nowheel.overrideEntityCulling": "Override Entity Culling limits",
     "text.nowheel.overrideEntityCulling.tooltip": "Override Entity Culling's config to cull contraptions that wouldn't get culled by default. Requires restart",
-    "text.nowheel.cullCreateTicking": "Tick culling",
-    "text.nowheel.cullCreateTicking.tooltip": "Skip the client-side tick of culled Create machines.",
+    "text.nowheel.tickCulling": "Tick culling",
+    "text.nowheel.tickCulling.tooltip": "Skip the client tick of culled Create machines.",
     "text.nowheel.distanceCulling": "Distance culling",
     "text.nowheel.distanceCulling.tooltip": "Cull stuff that's past Entity Culling's tracingDistance. Change tracingDistance in config/entityculling.json to modify the range."
 }

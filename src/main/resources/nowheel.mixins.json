@@ -8,7 +8,7 @@
     "entity_culling.CullTaskMixin",
     "entity_culling.EntityCullingModBaseMixin",
     "entity_culling.EntityCullingModMixin",
-    "create.tick_cull.SmartBlockEntityTickerMixin",
+    "tick_culling.LevelMixin",
     "flywheel.visual_pausing.AbstractBlockEntityVisualMixin",
     "flywheel.visual_pausing.AbstractEntityVisualMixin",
     "flywheel.visual_pausing.StorageMixin"
