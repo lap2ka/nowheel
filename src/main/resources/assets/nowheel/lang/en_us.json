@@ -2,9 +2,11 @@
     "text.nowheel.title": "Nowheel",
     "text.nowheel.category.general": "General",
     "text.nowheel.overrideEntityCulling": "Override Entity Culling limits",
-    "text.nowheel.overrideEntityCulling.tooltip": "Override Entity Culling's config to cull contraptions that wouldn't get culled by default. Requires restart",
+    "text.nowheel.overrideEntityCulling.tooltip": "Override Entity Culling's config to cull contraptions that wouldn't get culled by default. Can improve performance in specific scenarios. Requires restart.",
     "text.nowheel.tickCulling": "Tick culling",
-    "text.nowheel.tickCulling.tooltip": "Skip the client tick of culled Create machines.",
+    "text.nowheel.tickCulling.tooltip": "Skip the client tick of culled Create machines. Improves performance. Disable if some things are not animated properly.",
     "text.nowheel.distanceCulling": "Distance culling",
-    "text.nowheel.distanceCulling.tooltip": "Cull stuff that's past Entity Culling's tracingDistance. Change tracingDistance in config/entityculling.json to modify the range."
+    "text.nowheel.distanceCulling.tooltip": "Cull stuff that's past Entity Culling's tracingDistance. Improves performance on render distances 8+ by default. Change tracingDistance in config/entityculling.json to modify the range.",
+    "text.nowheel.forceRemoving": "Force removing backend",
+    "text.nowheel.forceRemoving.tooltip": "Advanced setting, only enable if performance is much lower than on previous versions of Nowheel. Forces the legacy removing backend to be used on indirect Flywheel backends."
 }

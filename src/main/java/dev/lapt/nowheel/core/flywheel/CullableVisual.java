@@ -5,6 +5,7 @@ import dev.engine_room.flywheel.api.backend.BackendManager;
 import dev.engine_room.flywheel.api.visual.Visual;
 import dev.engine_room.flywheel.api.visualization.VisualManager;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
+import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.versionless.access.Cullable;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +17,7 @@ public interface CullableVisual {
     }
 
     static boolean isRemovingBackend() {
+        if (NowheelConfig.get().forceRemoving) return true;
         ResourceLocation id = Backend.REGISTRY.getId(BackendManager.currentBackend());
         return id == null || !id.getPath().equals("indirect");
     }

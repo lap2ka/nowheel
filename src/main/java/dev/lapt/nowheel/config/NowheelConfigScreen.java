@@ -3,6 +3,7 @@ package dev.lapt.nowheel.config;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -23,7 +24,7 @@ public final class NowheelConfigScreen {
 
         general.addEntry(
             entry.startBooleanToggle(Component.translatable("text.nowheel.overrideEntityCulling"), config.overrideEntityCulling)
-                .setDefaultValue(false)
+                .setDefaultValue(true)
                 .setTooltip(Component.translatable("text.nowheel.overrideEntityCulling.tooltip"))
                 .setSaveConsumer(v -> config.overrideEntityCulling = v)
                 .build()
@@ -39,9 +40,22 @@ public final class NowheelConfigScreen {
 
         general.addEntry(
             entry.startBooleanToggle(Component.translatable("text.nowheel.distanceCulling"), config.distanceCulling)
-                .setDefaultValue(true)
+                .setDefaultValue(false)
                 .setTooltip(Component.translatable("text.nowheel.distanceCulling.tooltip"))
                 .setSaveConsumer(v -> config.distanceCulling = v)
+                .build()
+        );
+
+        general.addEntry(
+            entry.startBooleanToggle(Component.translatable("text.nowheel.forceRemoving"), config.forceRemoving)
+                .setDefaultValue(false)
+                .setTooltip(Component.translatable("text.nowheel.forceRemoving.tooltip"))
+                .setSaveConsumer(v -> {
+                    if (v != config.forceRemoving) {
+                        config.forceRemoving = v;
+                        Minecraft.getInstance().levelRenderer.allChanged();
+                    }
+                })
                 .build()
         );
 

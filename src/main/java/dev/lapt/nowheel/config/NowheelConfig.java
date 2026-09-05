@@ -10,9 +10,10 @@ import java.nio.file.Files;
 
 public class NowheelConfig {
 
-    public boolean overrideEntityCulling = false;
+    public boolean overrideEntityCulling = true;
     public boolean tickCulling = true;
-    public boolean distanceCulling = true;
+    public boolean distanceCulling = false;
+    public boolean forceRemoving = false;
 
     public static final int HITBOX_LIMIT_OVERRIDE = 1000;
 
