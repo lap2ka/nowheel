@@ -11,6 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import static dev.lapt.nowheel.util.IsCulledUtil.isCulled;
+
 public interface CullableVisual {
     static boolean isVisualCulled(Visual visual) {
         return visual instanceof CullableVisual c && c.nowheel$isCulled();
@@ -22,14 +24,16 @@ public interface CullableVisual {
         return id == null || !id.getPath().equals("indirect");
     }
 
-    static void changeVisualCullState(BlockEntity blockEntity, boolean culled) {
+    static void changeVisualCullState(BlockEntity blockEntity) {
         if (!isRemovingBackend()) return;
         var level = blockEntity.getLevel();
         if (level == null) return;
         VisualizationManager manager = VisualizationManager.get(level);
         if (manager == null) return;
 
-        toggle(manager.blockEntities(), blockEntity, culled);
+        VisualManager<BlockEntity> visuals = manager.blockEntities();
+        if (isCulled(blockEntity)) visuals.queueRemove(blockEntity);
+        else visuals.queueAdd(blockEntity);
     }
 
     static void changeVisualCullState(Entity entity, boolean culled) {
@@ -38,12 +42,9 @@ public interface CullableVisual {
         VisualizationManager manager = VisualizationManager.get(level);
         if (manager == null) return;
 
-        toggle(manager.entities(), entity, culled);
-    }
-
-    private static <T> void toggle(VisualManager<T> visuals, T subject, boolean culled) {
-        if (culled && !((Cullable) subject).isForcedVisible()) visuals.queueRemove(subject);
-        else visuals.queueAdd(subject);
+        VisualManager<Entity> visuals = manager.entities();
+        if (culled && !((Cullable) entity).isForcedVisible()) visuals.queueRemove(entity);
+        else visuals.queueAdd(entity);
     }
 
     boolean nowheel$isCulled();

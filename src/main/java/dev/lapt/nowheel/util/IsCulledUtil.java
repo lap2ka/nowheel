@@ -24,8 +24,7 @@ public final class IsCulledUtil {
     }
 
     public static boolean isCulled(BlockEntity blockEntity) {
-        Cullable c = (Cullable) blockEntity;
-        return (c.isCulled() || outsideTracingDistance(blockEntity)) && !c.isForcedVisible();
+        return isCulled((Cullable) blockEntity) || outsideTracingDistance(blockEntity);
     }
 
     public static boolean isBlockEntityCulledNoDistanceCulling(BlockEntity blockEntity) {
