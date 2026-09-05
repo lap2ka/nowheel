@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "Boost performance in Create using Occlusion Culling\n",
+  "authors": ["Lap2ka"],
+  "license": "${mod_license}",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.lapt.nowheel.NowheelMod"],
+    "modmenu": ["dev.lapt.nowheel.config.NowheelModMenu"]
+  },
+  "accessWidener": "nowheel.accesswidener",
+  "contact": {
+    "homepage": "https://modrinth.com/mod/create-nowheel",
+    "sources": "https://github.com/lap2ka/nowheel",
+    "issues": "https://github.com/lap2ka/nowheel/issues"
+  },
+  "mixins": [
+    {
+      "config": "nowheel.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": "${loader_version_range}",
+    "minecraft": "${minecraft_version_range}",
+    "create": "*",
+    "entityculling": "*"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "cloth-config": "*"
+  }
+}

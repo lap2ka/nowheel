@@ -39,7 +39,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew chiseledBuild
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
@@ -48,4 +48,4 @@ jobs:
           name: Nowheel ${{ github.event.inputs.tag || github.ref_name }}
           target_commitish: ${{ github.sha }}
           generate_release_notes: true
-          files: build/libs/*.jar
+          files: versions/*/build/libs/*.jar

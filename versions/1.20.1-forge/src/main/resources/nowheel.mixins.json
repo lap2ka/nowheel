@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.lapt.nowheel.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "nowheel.refmap.json",
+  "client": [
+    "BlockEntityRenderDispatcherMixin",
+    "entity_culling.CullTaskMixin",
+    "entity_culling.EntityCullingModBaseMixin",
+    "entity_culling.EntityCullingModMixin",
+    "entity_culling.legacy_removing.BlockEntityMixin",
+    "entity_culling.legacy_removing.EntityMixin",
+    "tick_culling.LevelMixin",
+    "flywheel.pausing.AbstractBlockEntityVisualMixin",
+    "flywheel.pausing.AbstractEntityVisualMixin",
+    "flywheel.pausing.StorageMixin",
+    "flywheel.legacy_removing.BlockEntityStorageMixin",
+    "flywheel.legacy_removing.EntityStorageMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

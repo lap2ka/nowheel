@@ -24,10 +24,17 @@ public class EntityCullingModBaseMixin {
     @Shadow
     public Set<BlockEntityType<?>> blockEntityWhitelist;
 
+    //? if >=1.21 {
     @Unique
     private static final ResourceLocation ROPE_PULLEY = ResourceLocation.parse("create:rope_pulley");
     @Unique
     private static final ResourceLocation HOSE_PULLEY = ResourceLocation.parse("create:hose_pulley");
+    //?} else {
+    /*@Unique
+    private static final ResourceLocation ROPE_PULLEY = new ResourceLocation("create", "rope_pulley");
+    @Unique
+    private static final ResourceLocation HOSE_PULLEY = new ResourceLocation("create", "hose_pulley");
+    *///?}
     @Unique
     private boolean nowheel$overridenWhitelist = false;
 
