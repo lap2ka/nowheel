@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.mixin.flywheel.visual_pausing;
+package dev.lapt.nowheel.mixin.flywheel.pausing;
 
 import dev.engine_room.flywheel.lib.visual.AbstractBlockEntityVisual;
 import dev.lapt.nowheel.core.flywheel.CullableVisual;

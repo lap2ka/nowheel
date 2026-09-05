@@ -8,10 +8,14 @@
     "entity_culling.CullTaskMixin",
     "entity_culling.EntityCullingModBaseMixin",
     "entity_culling.EntityCullingModMixin",
+    "entity_culling.legacy_removing.BlockEntityMixin",
+    "entity_culling.legacy_removing.EntityMixin",
     "tick_culling.LevelMixin",
-    "flywheel.visual_pausing.AbstractBlockEntityVisualMixin",
-    "flywheel.visual_pausing.AbstractEntityVisualMixin",
-    "flywheel.visual_pausing.StorageMixin"
+    "flywheel.pausing.AbstractBlockEntityVisualMixin",
+    "flywheel.pausing.AbstractEntityVisualMixin",
+    "flywheel.pausing.StorageMixin",
+    "flywheel.legacy_removing.BlockEntityStorageMixin",
+    "flywheel.legacy_removing.EntityStorageMixin"
   ],
   "injectors": {
     "defaultRequire": 1

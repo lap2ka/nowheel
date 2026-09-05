@@ -15,20 +15,28 @@ public final class IsCulledUtil {
     private IsCulledUtil() {
     }
 
+    public static boolean isCulled(Object obj) {
+        return obj instanceof Cullable c && isCulled(c);
+    }
+
     public static boolean isCulled(Cullable c) {
         return c.isCulled() && !c.isForcedVisible();
     }
 
     public static boolean isCulled(BlockEntity blockEntity) {
         Cullable c = (Cullable) blockEntity;
-        return (c.isCulled() || outsideTracingRange(blockEntity)) && !c.isForcedVisible();
+        return (c.isCulled() || outsideTracingDistance(blockEntity)) && !c.isForcedVisible();
+    }
+
+    public static boolean isBlockEntityCulledNoDistanceCulling(BlockEntity blockEntity) {
+        return isCulled((Cullable) blockEntity);
     }
 
     public static boolean isCulled(Entity entity) {
         return isCulled((Cullable) entity);
     }
 
-    private static boolean outsideTracingRange(BlockEntity blockEntity) {
+    private static boolean outsideTracingDistance(BlockEntity blockEntity) {
         EntityCullingModBase entityCulling = EntityCullingModBase.instance;
         if (!EntityCullingVersionlessBase.enabled || entityCulling.config.skipBlockEntityCulling || !NowheelConfig.get().distanceCulling) {
             return false;
