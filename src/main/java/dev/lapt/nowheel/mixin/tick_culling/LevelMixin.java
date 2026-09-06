@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static dev.lapt.nowheel.util.IsCulledUtil.isCulled;
+import static dev.lapt.nowheel.core.util.IsCulledUtil.isCulled;
 
 @Mixin(Level.class)
 public abstract class LevelMixin {

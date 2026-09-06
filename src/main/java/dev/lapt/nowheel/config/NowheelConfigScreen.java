@@ -3,6 +3,7 @@ package dev.lapt.nowheel.config;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -32,7 +33,7 @@ public final class NowheelConfigScreen {
 
         general.addEntry(
             entry.startBooleanToggle(Component.translatable("text.nowheel.tickCulling"), config.tickCulling)
-                .setDefaultValue(true)
+                .setDefaultValue(false)
                 .setTooltip(Component.translatable("text.nowheel.tickCulling.tooltip"))
                 .setSaveConsumer(v -> config.tickCulling = v)
                 .build()
@@ -46,7 +47,10 @@ public final class NowheelConfigScreen {
                 .build()
         );
 
-        general.addEntry(
+        SubCategoryBuilder advanced = entry.startSubCategory(Component.translatable("text.nowheel.category.advanced"))
+            .setExpanded(false);
+
+        advanced.add(
             entry.startBooleanToggle(Component.translatable("text.nowheel.forceRemoving"), config.forceRemoving)
                 .setDefaultValue(false)
                 .setTooltip(Component.translatable("text.nowheel.forceRemoving.tooltip"))
@@ -58,6 +62,8 @@ public final class NowheelConfigScreen {
                 })
                 .build()
         );
+
+        general.addEntry(advanced.build());
 
         return builder.build();
     }

@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.util;
+package dev.lapt.nowheel.core.util;
 
 import com.simibubi.create.foundation.blockEntity.CachedRenderBBBlockEntity;
 import dev.lapt.nowheel.config.NowheelConfig;

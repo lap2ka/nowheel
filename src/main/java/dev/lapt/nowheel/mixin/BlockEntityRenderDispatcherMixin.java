@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static dev.lapt.nowheel.util.IsCulledUtil.isCulled;
+import static dev.lapt.nowheel.core.util.IsCulledUtil.isCulled;
 
 // Lots of Create stuff marks itself as shouldRenderOffScreen which EntityCulling happily
 // respects. Cull those anyway. We make AABBs in CreateBoxes for the

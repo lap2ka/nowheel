@@ -11,7 +11,7 @@ import java.nio.file.Files;
 public class NowheelConfig {
 
     public boolean overrideEntityCulling = true;
-    public boolean tickCulling = true;
+    public boolean tickCulling = false;
     public boolean distanceCulling = false;
     public boolean forceRemoving = false;
 

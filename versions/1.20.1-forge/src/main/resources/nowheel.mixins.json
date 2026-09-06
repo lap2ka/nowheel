@@ -12,9 +12,9 @@
     "entity_culling.legacy_removing.BlockEntityMixin",
     "entity_culling.legacy_removing.EntityMixin",
     "tick_culling.LevelMixin",
-    "flywheel.pausing.AbstractBlockEntityVisualMixin",
-    "flywheel.pausing.AbstractEntityVisualMixin",
-    "flywheel.pausing.StorageMixin",
+    "flywheel.AbstractBlockEntityVisualMixin",
+    "flywheel.AbstractEntityVisualMixin",
+    "flywheel.StorageMixin",
     "flywheel.legacy_removing.BlockEntityStorageMixin",
     "flywheel.legacy_removing.EntityStorageMixin"
   ],

@@ -1,4 +1,4 @@
-package dev.lapt.nowheel.mixin.flywheel.pausing;
+package dev.lapt.nowheel.mixin.flywheel;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -18,9 +18,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static dev.lapt.nowheel.core.flywheel.CullableVisual.isRemovingBackend;
+import static dev.lapt.nowheel.core.util.CullingUtil.isRemovingBackend;
 import static dev.lapt.nowheel.core.flywheel.CullableVisual.isVisualCulled;
-import static dev.lapt.nowheel.util.IsCulledUtil.isCulled;
+import static dev.lapt.nowheel.core.util.IsCulledUtil.isCulled;
 
 @Mixin(
     value = Storage.class,
