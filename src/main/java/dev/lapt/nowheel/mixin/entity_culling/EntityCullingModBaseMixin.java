@@ -30,8 +30,10 @@ public class EntityCullingModBaseMixin {
     @Unique
     private static final ResourceLocation HOSE_PULLEY = ResourceLocation.parse("create:hose_pulley");
     //?} else {
-    /*@Unique
+    /*@SuppressWarnings("removal")
+    @Unique
     private static final ResourceLocation ROPE_PULLEY = new ResourceLocation("create", "rope_pulley");
+    @SuppressWarnings("removal")
     @Unique
     private static final ResourceLocation HOSE_PULLEY = new ResourceLocation("create", "hose_pulley");
     *///?}
