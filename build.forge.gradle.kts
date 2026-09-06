@@ -148,6 +148,7 @@ publishMods {
         projectId = modrinthId
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         minecraftVersions.add(minecraftVersion)
+        environment = CLIENT_ONLY
         requires { slug = "create" }
         requires { slug = "entityculling" }
     }
@@ -156,6 +157,8 @@ publishMods {
         projectId = curseforgeId
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
         minecraftVersions.add(minecraftVersion)
+        client = true
+        server = false
         requires { slug = "create" }
         requires { slug = "entityculling" }
     }
