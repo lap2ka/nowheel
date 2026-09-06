@@ -11,6 +11,7 @@ val modId = prop("mod_id")
 val modName = prop("mod_name")
 val modLicense = prop("mod_license")
 val modVersion = prop("mod_version")
+val modDescription = prop("mod_description")
 val modGroupId = prop("mod_group_id")
 val loader = prop("loader")
 
@@ -109,6 +110,7 @@ tasks.withType<ProcessResources>().configureEach {
         "mod_name" to modName,
         "mod_license" to modLicense,
         "mod_version" to modVersion,
+        "mod_description" to modDescription,
     )
     inputs.properties(replaceProperties)
     filesMatching(listOf("fabric.mod.json")) { expand(replaceProperties) }

@@ -10,9 +10,7 @@ displayName = "${mod_name}"
 displayURL = "https://modrinth.com/mod/create-nowheel"
 authors="Lap2ka"
 logoFile="icon.png"
-description = '''
-Boost performance in Create using Occlusion Culling
-'''
+description = "${mod_description}"
 
 [[mixins]]
 config = "nowheel.mixins.json"

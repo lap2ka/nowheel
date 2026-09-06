@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${mod_version}",
   "name": "${mod_name}",
-  "description": "Boost performance in Create using Occlusion Culling\n",
+  "description": "${mod_description}\n",
   "authors": ["Lap2ka"],
   "license": "${mod_license}",
   "icon": "icon.png",
