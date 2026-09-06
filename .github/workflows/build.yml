@@ -34,9 +34,15 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew chiseledBuild
 
+      - name: Collect jars
+        run: |
+          mkdir -p dist
+          find versions/*/build/libs -name '*.jar' ! -name '*-sources.jar' -exec cp {} dist/ \;
+          ls -l dist
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: nowheel-${{ github.sha }}
-          path: versions/*/build/libs/*.jar
+          path: dist/*.jar
           if-no-files-found: error
