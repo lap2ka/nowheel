@@ -5,7 +5,7 @@
 <b>New in 2.0: Pop-in and hitches should now be fully gone for most configurations!</b><br>
 <small>(Note: Indirect Flywheel is needed for this optimization. Colorwheel 1.3+ is needed if you are using shaders but other versions work)</small>
 </div>
-
+<br>
 <div align="center">
 
 [![Available on Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/create-nowheel)
