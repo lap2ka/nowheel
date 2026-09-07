@@ -136,7 +136,7 @@ tasks.named("createMinecraftArtifacts") {
 }
 
 publishMods {
-    file = tasks.named<Jar>("jar").flatMap { it.archiveFile }
+    file = tasks.named<Jar>("reobfJar").flatMap { it.archiveFile }
     type = STABLE
     modLoaders.add(loader)
     changelog = providers.environmentVariable("CHANGELOG").orElse("No changelog provided.")
