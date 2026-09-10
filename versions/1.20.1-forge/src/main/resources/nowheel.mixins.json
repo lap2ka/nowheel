@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "nowheel.refmap.json",
   "client": [
+    "BlockEntityMixin",
     "BlockEntityRenderDispatcherMixin",
     "entity_culling.CullTaskMixin",
     "entity_culling.EntityCullingModBaseMixin",

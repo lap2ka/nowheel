@@ -4,6 +4,7 @@
   "package": "dev.lapt.nowheel.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "BlockEntityMixin",
     "BlockEntityRenderDispatcherMixin",
     "entity_culling.CullTaskMixin",
     "entity_culling.EntityCullingModBaseMixin",
