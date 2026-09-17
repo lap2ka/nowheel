@@ -32,7 +32,7 @@ public final class IsCulledUtil {
     }
 
     public static boolean isCulled(BlockEntity blockEntity) {
-        return ((DistanceCullable) blockEntity).nowheel$isDistanceCulled() || isCulled((Cullable) blockEntity);
+        return isCulled((Cullable) blockEntity) || ((DistanceCullable) blockEntity).nowheel$isDistanceCulled();
     }
 
     public static boolean isBlockEntityCulledNoDistanceCulling(BlockEntity blockEntity) {
