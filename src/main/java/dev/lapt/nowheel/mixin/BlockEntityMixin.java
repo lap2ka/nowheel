@@ -23,7 +23,7 @@ public abstract class BlockEntityMixin implements DistanceCullable {
 
     @Override
     public void nowheel$setDistanceCulled(boolean culled) {
-        nowheel$distanceCulled = culled;
+        if (nowheel$distanceCulled != culled) nowheel$distanceCulled = culled;
     }
 
     @Inject(
