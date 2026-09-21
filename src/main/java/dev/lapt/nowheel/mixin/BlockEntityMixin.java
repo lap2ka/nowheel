@@ -31,6 +31,6 @@ public abstract class BlockEntityMixin implements DistanceCullable {
         at = @At("TAIL")
     )
     private void nowheel$initDistanceCulling(Level level, CallbackInfo ci) {
-        if (level.isClientSide) DistanceCullingUtil.update((BlockEntity) (Object) this);
+        if (level != null && level.isClientSide) DistanceCullingUtil.update((BlockEntity) (Object) this);
     }
 }
