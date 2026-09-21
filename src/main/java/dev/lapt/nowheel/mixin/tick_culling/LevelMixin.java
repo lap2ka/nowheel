@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.simibubi.create.content.contraptions.IControlContraption;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import dev.lapt.nowheel.config.NowheelConfig;
-import dev.lapt.nowheel.core.util.IsCulledUtil;
+import dev.lapt.nowheel.core.util.DistanceCullingUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.TickingBlockEntity;
@@ -28,7 +28,7 @@ public abstract class LevelMixin {
     private void nowheel$onBeginTick(CallbackInfo ci) {
         var level = (Level) (Object) this;
         if (level.isClientSide) {
-            IsCulledUtil.onBeginTick();
+            DistanceCullingUtil.onBeginTick();
         }
     }
 

@@ -12,7 +12,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 import static dev.lapt.nowheel.core.util.IsCulledUtil.isCulled;
 
-public class CullingUtil {
+public final class LegacyCullingUtil {
+    private LegacyCullingUtil() {
+    }
+
     public static boolean isRemovingBackend() {
         if (NowheelConfig.get().forceRemoving) return true;
         ResourceLocation id = Backend.REGISTRY.getId(BackendManager.currentBackend());

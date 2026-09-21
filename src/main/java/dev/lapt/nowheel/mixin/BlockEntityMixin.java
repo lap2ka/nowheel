@@ -1,7 +1,7 @@
 package dev.lapt.nowheel.mixin;
 
 import dev.lapt.nowheel.core.DistanceCullable;
-import dev.lapt.nowheel.core.util.IsCulledUtil;
+import dev.lapt.nowheel.core.util.DistanceCullingUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,6 +31,6 @@ public abstract class BlockEntityMixin implements DistanceCullable {
         at = @At("TAIL")
     )
     private void nowheel$initDistanceCulling(Level level, CallbackInfo ci) {
-        if (level.isClientSide) IsCulledUtil.updateDistanceCulling((BlockEntity) (Object) this);
+        if (level.isClientSide) DistanceCullingUtil.update((BlockEntity) (Object) this);
     }
 }

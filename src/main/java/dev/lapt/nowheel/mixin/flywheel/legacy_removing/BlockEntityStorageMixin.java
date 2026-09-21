@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static dev.lapt.nowheel.core.util.CullingUtil.isRemovingBackend;
+import static dev.lapt.nowheel.core.util.LegacyCullingUtil.isRemovingBackend;
 import static dev.lapt.nowheel.core.util.IsCulledUtil.isBlockEntityCulledNoDistanceCulling;
 
 // just to be safe ig

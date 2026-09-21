@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static dev.lapt.nowheel.core.util.CullingUtil.isRemovingBackend;
+import static dev.lapt.nowheel.core.util.LegacyCullingUtil.isRemovingBackend;
 import static dev.lapt.nowheel.core.flywheel.CullableVisual.isVisualCulled;
 import static dev.lapt.nowheel.core.util.IsCulledUtil.isCulled;
 
