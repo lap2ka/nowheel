@@ -28,7 +28,7 @@
     "fabricloader": "${loader_version_range}",
     "minecraft": "${minecraft_version_range}",
     "create": "*",
-    "entityculling": ">=1.11.1"
+    "entityculling": ">=${ec_min_version}"
   },
   "suggests": {
     "modmenu": "*",

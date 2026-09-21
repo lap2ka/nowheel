@@ -39,7 +39,7 @@ side = "CLIENT"
 [[dependencies.${ mod_id }]]
 modId = "entityculling"
 type = "required"
-versionRange = "[1.11.1,)"
+versionRange = "[${ec_min_version},)"
 ordering = "AFTER"
 side = "CLIENT"
 

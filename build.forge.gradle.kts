@@ -116,6 +116,7 @@ tasks.withType<ProcessResources>().configureEach {
         "mod_license" to modLicense,
         "mod_version" to modVersion,
         "mod_description" to modDescription,
+        "ec_min_version" to entitycullingVersion,
     )
     inputs.properties(replaceProperties)
     filesMatching(listOf("META-INF/mods.toml")) { expand(replaceProperties) }
