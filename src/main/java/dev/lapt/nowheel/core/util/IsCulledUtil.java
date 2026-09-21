@@ -4,7 +4,7 @@ import com.simibubi.create.foundation.blockEntity.CachedRenderBBBlockEntity;
 import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.EntityCullingModBase;
 import dev.tr7zw.entityculling.versionless.EntityCullingVersionlessBase;
-import dev.tr7zw.entityculling.versionless.access.Cullable;
+import dev.tr7zw.entityculling.access.Cullable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -47,7 +47,7 @@ public final class IsCulledUtil {
         double tracingDistanceSqr = entityCulling.config.tracingDistance * entityCulling.config.tracingDistance;
         if (blockEntityPos.distToCenterSqr(cameraPos) <= tracingDistanceSqr) return false;
 
-        if (entityCulling.blockEntityWhitelist.contains(blockEntity.getType()) || entityCulling.isDynamicWhitelisted(blockEntity)) {
+        if (entityCulling.blockEntityWhitelist.contains(blockEntity.getType()) || entityCulling.isBlockEntityDynamicWhitelisted((Cullable) blockEntity)) {
             return false;
         }
 

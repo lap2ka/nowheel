@@ -1,17 +1,12 @@
 package dev.lapt.nowheel.mixin.entity_culling;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import dev.engine_room.flywheel.lib.visualization.VisualizationHelper;
 import dev.lapt.nowheel.config.NowheelConfig;
 import dev.tr7zw.entityculling.CullTask;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Position;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -21,27 +16,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
     remap = false
 )
 public abstract class CullTaskMixin {
-
-    @Unique
-    private static final BlockEntityRenderer<BlockEntity> nowheel$FLYWHEEL_VISUAL_RENDERER = (blockEntity, partialTick, poseStack, bufferSource, packedLight, packedOverlay) -> { };
-
-    // in my testing some flywheel stuff (simple kinetic, etc) didn't appear to have a renderer,
-    // nor did they subsequently get culled, so we give them one
-    @SuppressWarnings({"rawtypes", "MixinAnnotationTarget", "InvalidInjectorMethodSignature"})
-    @Redirect(
-        method = "cullBlockEntities",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;getRenderer(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;",
-            remap = true
-        )
-    )
-    private BlockEntityRenderer nowheel$includeFlywheelOnlyVisuals(BlockEntityRenderDispatcher dispatcher, BlockEntity blockEntity) {
-        BlockEntityRenderer renderer = dispatcher.getRenderer(blockEntity);
-        if (renderer != null) return renderer;
-        if (VisualizationHelper.canVisualize(blockEntity)) return nowheel$FLYWHEEL_VISUAL_RENDERER;
-        return null;
-    }
 
     @ModifyExpressionValue(
         method = "<init>",
